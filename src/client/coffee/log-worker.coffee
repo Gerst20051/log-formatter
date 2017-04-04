@@ -133,5 +133,8 @@ addSyntaxHighlightingToNode = (data) ->
   if matchedMysqlTerms == true # MYSQL
     return '<div><pre class="brush: sql">' + pd.sql(data.trim()) + '</pre></div>'
   else if 1 == data.indexOf('[') or 1 == data.indexOf('{') # JSON
-    return '<div><pre class="brush: js">' + JSON.stringify(JSON.parse(data.trim()), null, 4) + '</pre></div>'
+    try
+      return '<div><pre class="brush: js">' + JSON.stringify(JSON.parse(data.trim()), null, 4) + '</pre></div>'
+    catch error
+      return '<data><pre>' + data.trim() + '</pre></div>'
   return
