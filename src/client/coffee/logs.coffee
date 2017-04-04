@@ -1,9 +1,5 @@
 $ = require 'jquery'
-# io = require 'socket.io-client'
 worker = require './webworkers.coffee'
-# config = require './../../../config.yml'
-
-# socket = io.connect config.default.server.hostname + ':' + config.default.server.port
 
 logRows = []
 parsedRows = []
@@ -27,6 +23,13 @@ errorArray = [
 blacklistErrorArray = [
   'Paypal not configured for this operator'
 ]
+
+parseLogInput = (data) ->
+  if typeof data is 'object'
+    logRows = logRows.concat data
+    if processingRows is false
+      processRows()
+  return
 
 addRows = (original_rows, rows) ->
   for row, index in rows
@@ -56,15 +59,10 @@ addRow = (original_value, value) ->
 
 worker.setResponseCallback addRows
 
-# $ ->
-#   socket.on 'new-data', (data) ->
-#     if typeof data.value is 'object'
-#       logRows = logRows.concat data.value
-#       if processingRows is false
-#         processRows()
-#   setInterval ( ->
-#     $('#normalLogs').children('.log-row:gt(' + config.default.setting.max_log_results + ')').remove()
-#   ), 60e3
+$ ->
+  setInterval ( ->
+    $('#normalLogs').children('.log-row:gt(10000)').remove()
+  ), 60e3
 
 processRows = ->
   logRowsLength = logRows.length
@@ -72,7 +70,6 @@ processRows = ->
     processingRows = true
     worker.postMessage (
       type: 'request'
-      config: config.default
       body_status:
         eyeopen: $('body').hasClass 'eyeopen'
       msg: logRows.splice(0, logRowsLength)
@@ -84,6 +81,15 @@ highlightSyntax = ->
   SyntaxHighlighter.highlight()
 
 $ ->
+  $('textarea').bind 'paste', (e) ->
+    elem = $(this)
+    setTimeout ( ->
+      $('textarea').hide()
+      $('#mainContent').show()
+      parseLogInput elem.val().split('\n')
+      return
+    ), 1e3
+    return
   $('#logs').on 'click', '.log-row-data', (e) ->
     e.preventDefault()
     $(this).next().toggleClass('eyeopened')

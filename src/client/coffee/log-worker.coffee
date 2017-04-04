@@ -12,7 +12,6 @@ self.onmessage = (e) ->
   output = []
   input.msg.forEach (row) ->
     output.push getRow {
-      config: input.config
       body_status: input.body_status
     }, row
   self.postMessage (
@@ -47,7 +46,6 @@ mysqlTerms = [
 ]
 
 getRow = (input, data) ->
-  config = input.config
   body_status = input.body_status
   html = []
   matches = data.match(/^(\w{3} \d{2}) (\d{2}:\d{2}:\d{2}) (.*) (V\d+):(.*) \(log level = (\d)\)$/)
@@ -67,7 +65,7 @@ getRow = (input, data) ->
     if datematches and datematches.length
       time = datematches[2]
       realdata = datematches[3]
-      systemmatches = realdata.match(new RegExp(config.server.hostname + ' (\\w*)(\\[\\d*\\])?: (.*)'))
+      systemmatches = realdata.match(new RegExp('.* (\\w*)(\\[\\d*\\])?: (.*)'))
       if systemmatches and systemmatches.length
         service = systemmatches[1].toUpperCase()
         service_classname = service.toLowerCase()
