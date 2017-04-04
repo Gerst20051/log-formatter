@@ -48,7 +48,7 @@ mysqlTerms = [
 getRow = (input, data) ->
   body_status = input.body_status
   html = []
-  matches = data.match(/^(\w{3} \d{2}) (\d{2}:\d{2}:\d{2}) (.*) (V\d+):(.*) \(log level = (\d)\)$/)
+  matches = data.match(/^(\w{3} {1,2}\d{1,2}) (\d{2}:\d{2}:\d{2}) (.*) (V\d+):(.*) \(log level = (\d)\)$/)
   if matches and matches.length
     date = matches[1]
     time = matches[2]
@@ -61,11 +61,11 @@ getRow = (input, data) ->
     html.push "<div class=\"log-row-time\">#{time}</div>"
     html.push "<div class=\"log-row-loglevel loglevel-#{loglevel_classname}\">#{loglevel_formatted}</div>"
   else
-    datematches = data.match(/^(\w{3} \d{2}) (\d{2}:\d{2}:\d{2}) (.*)$/)
+    datematches = data.match(/^(\w{3} {1,2}\d{1,2}) (\d{2}:\d{2}:\d{2}) (.*)$/)
     if datematches and datematches.length
       time = datematches[2]
       realdata = datematches[3]
-      systemmatches = realdata.match(new RegExp('.* (\\w*)(\\[\\d*\\])?: (.*)'))
+      systemmatches = realdata.match(new RegExp('(\\w*)(\\[\\d*\\])?: (.*)'))
       if systemmatches and systemmatches.length
         service = systemmatches[1].toUpperCase()
         service_classname = service.toLowerCase()

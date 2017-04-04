@@ -7,9 +7,9 @@ $ ->
       when 'searchControl' then toggleSearchControl()
       when 'eyeControl' then toggleEyeControl()
       when 'wrapControl' then toggleWrapControl()
-      when 'pauseControl' then togglePauseControl()
       when 'clearControl'
         $('#hiddenLogs, #errorLogs, #normalLogs').empty()
+        $('body').removeClass 'hidetextarea'
       when 'scrollTopControl'
         $('#mainContent').animate { scrollTop: 0 }, 'slow'
       when 'scrollBottomControl'
@@ -32,13 +32,4 @@ toggleEyeControl = ->
 
 toggleWrapControl = ->
   $('body').toggleClass 'wrapenabled'
-  return
-
-togglePauseControl = ->
-  $('body').toggleClass 'paused'
-  if not $('body').hasClass 'paused'
-    $hiddenLogs = $('#logs').find('#hiddenLogs')
-    if $hiddenLogs.has('div').length
-      $('#logs').find('#normalLogs').prepend($hiddenLogs.html())
-      $hiddenLogs.empty()
   return

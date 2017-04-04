@@ -52,17 +52,9 @@ addRow = (original_value, value) ->
   if rowHasError is true and rowHasBlacklistedError is false
     $newLog.addClass 'alert-log-row'
     $('#errorLogs').prepend $newLog.clone()
-  if $('body').hasClass 'paused'
-    $('#hiddenLogs').prepend $newLog
-  else
-    parsedRows.unshift $newLog
+  parsedRows.unshift $newLog
 
 worker.setResponseCallback addRows
-
-$ ->
-  setInterval ( ->
-    $('#normalLogs').children('.log-row:gt(10000)').remove()
-  ), 60e3
 
 processRows = ->
   logRowsLength = logRows.length
@@ -84,11 +76,10 @@ $ ->
   $('textarea').bind 'paste', (e) ->
     elem = $(this)
     setTimeout ( ->
-      $('textarea').hide()
-      $('#mainContent').show()
+      $('body').addClass 'hidetextarea'
       parseLogInput elem.val().split('\n')
       return
-    ), 1e3
+    ), 0.75 * 1e3
     return
   $('#logs').on 'click', '.log-row-data', (e) ->
     e.preventDefault()
@@ -101,8 +92,3 @@ prependLogs = ->
 setInterval prependLogs, 0.25 * 1e3
 
 setInterval highlightSyntax, 5e3
-
-# errorArray.forEach (errorText) ->
-#   nodeTextArray = nodeTextHTML.split(errorText)
-#   nodeTextHTML = nodeTextArray.join('<span class="alert_text">' + errorText + '</span>')
-#   return
