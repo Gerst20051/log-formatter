@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Log Formatter</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./public/assets/css/main.css">
+    <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+    <script src="http://agorbatchev.typepad.com/pub/sh/3_0_83/scripts/shBrushSql.js"></script>
+    <script src="http://agorbatchev.typepad.com/pub/sh/3_0_83/scripts/shBrushJScript.js"></script>
+    <script src="./public/assets/javascript/bundle.js"></script>
+  </head>
+  <body>
+    <div id="mainContent">
+      <div id="searchPanel">
+        <div id="inputContainer">
+          <div class="group">
+            <input class="searchInput" id="filterText" type="text" required><span class="highlight"></span><span class="bar"></span>
+            <label>Filter</label>
+          </div>
+          <div class="group">
+            <input class="searchInput" id="highlightText" type="text" required><span class="highlight"></span><span class="bar"></span>
+            <label>Highlight</label>
+          </div>
+          <div class="group">
+            <input class="searchInput" id="excludeText" type="text" required><span class="highlight"></span><span class="bar"></span>
+            <label>Exclude</label>
+          </div>
+        </div>
+      </div>
+      <div id="controlPanel">
+        <ul id="controls">
+          <li id="searchControl"></li>
+          <li id="eyeControl"></li>
+          <li id="wrapControl"></li>
+          <li id="pauseControl"></li>
+          <li id="clearControl"></li>
+          <li id="scrollTopControl"></li>
+          <li id="scrollBottomControl"></li>
+        </ul>
+      </div>
+      <div id="gradientBottom"></div>
+      <div id="logsContainer">
+        <div id="logs">
+          <div id="hiddenLogs"></div>
+          <div id="errorLogs"></div>
+          <div id="normalLogs"></div>
+        </div>
+        <div id="theEnd">-- The End --</div>
+      </div>
+    </div>
+  </body>
+</html>

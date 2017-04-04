@@ -1,0 +1,143 @@
+$keyframe-name = marquee
+
+@keyframes {$keyframe-name}
+  0%
+    text-indent 0px
+  100%
+    text-indent -4000px
+
+#logs
+  margin-left 100px
+  padding 0 5rem 0 1rem
+
+  #hiddenLogs
+    display none
+
+  #errorLogs
+    margin-bottom 20px
+
+  #errorLogs .log-row,
+  .alert-log-row
+    margin-bottom 10px
+
+  #errorLogs .log-row
+    border 5px solid #f00 !important
+
+  .alert-log-row
+    border 5px solid rgba(255, 0, 0, 0.6) !important
+    margin-top 10px
+
+  .log-row
+    border-radius 8px
+    position relative
+
+  #normalLogs div:first-of-type .log-row-data
+    border-top 3px solid #304f5f
+
+  .log-row:nth-child(even)
+    background-color #304f5f
+    border-bottom 1px solid #365a6f
+    border-left 1px solid #24292c
+    border-right 1px solid #365a6f
+    border-top 1px solid #24292c
+
+  .log-row-time,
+  .log-row-loglevel
+    left -110px
+    position absolute
+    width 100px
+
+  .alert-log-row .log-row-time,
+  .alert-log-row .log-row-loglevel
+    left -114px
+
+  .log-row-time
+    color #ddd
+    top 10px
+
+  .log-row-loglevel
+    color #bbb
+    top 30px
+
+  .log-row-data
+    -webkit-animation-play-state paused
+    animation-play-state paused
+    cursor pointer
+    margin 0 20px
+    overflow-x scroll
+    overflow -moz-scrollbars-none
+    padding 20px 0
+    pointer-events none
+    -webkit-touch-callout default
+    -webkit-user-select text
+    -khtml-user-select text
+    -moz-user-select text
+    -ms-user-select text
+    user-select text
+    white-space nowrap !important
+
+  .alert-log-row .log-row-data
+    margin-left 16px
+
+  .wrapenabled & .log-row-data
+    white-space normal !important
+
+  .log-row-data.enable-hover:hover
+    animation marquee 14s linear infinite
+    -webkit-animation-play-state running
+    animation-play-state running
+
+  .wrapenabled & .log-row-data.enable-hover:hover
+    animation none !important
+    -webkit-animation-play-state paused
+    animation-play-state paused
+
+  .log-row-data::-webkit-scrollbar,
+  .log-row-data::-webkit-scrollbar-track,
+  .log-row-data::-webkit-scrollbar-thumb,
+  .log-row-data::-webkit-scrollbar-thumb:window-inactive {
+    background-color transparent
+    -webkit-box-shadow none
+    height 0
+    width 0
+  }
+
+  .log-row-content
+    display none
+
+  .log-row-content.eyeopened,
+  .eyeopen & .log-row-content
+    display block
+
+  .log-row-data-expanded
+    background-color #1d4d67
+
+    .wrapenabled &
+      display none
+
+  .log-row-details
+    background-color #2e4557
+
+    pre
+      word-break break-word
+
+  .log-row:nth-child(odd) .log-row-details
+    background-color #304f5f
+
+  .log-row-data-expanded,
+  .log-row-details
+    border-radius 8px
+    margin 0 10px 20px
+    padding 10px
+    -webkit-touch-callout default
+    -webkit-user-select text
+    -khtml-user-select text
+    -moz-user-select text
+    -ms-user-select text
+    user-select text
+
+#theEnd
+  font-size 20px
+  font-weight bold
+  padding 8%
+  text-align center

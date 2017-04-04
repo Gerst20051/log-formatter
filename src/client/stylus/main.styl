@@ -1,0 +1,51 @@
+.hidden
+  display none
+
+.nowrap
+  white-space nowrap !important
+
+.disable-hover,
+.disable-hover *
+  pointer-events none !important
+
+.enable-hover,
+.enable-hover *
+  pointer-events all !important
+
+#gradientTop,
+#gradientBottom
+  pointer-events none
+  height 8%
+  left 0
+  position fixed
+  width 100%
+  z-index 1
+
+#gradientTop
+  background -moz-linear-gradient(top, rgba(46, 69, 87, 0), rgba(46, 69, 87, 1))
+  background -o-linear-gradient(top, rgba(46, 69, 87, 0), rgba(46, 69, 87, 1))
+  background -webkit-linear-gradient(bottom, rgba(46, 69, 87, 0), rgba(46, 69, 87, 1))
+  background linear-gradient(to top, rgba(46, 69, 87, 0), rgba(46, 69, 87, 1))
+  top 0
+
+#gradientBottom
+  background -moz-linear-gradient(top, rgba(46, 69, 87, 1), rgba(46, 69, 87, 0))
+  background -o-linear-gradient(top, rgba(46, 69, 87, 1), rgba(46, 69, 87, 0))
+  background -webkit-linear-gradient(bottom, rgba(46, 69, 87, 1), rgba(46, 69, 87, 0))
+  background linear-gradient(to top, rgba(46, 69, 87, 1), rgba(46, 69, 87, 0))
+  bottom 0
+  height 15%
+
+#mainContent
+  bottom 10px
+  left 0
+  -webkit-overflow-scrolling: touch;
+  overflow-x hidden
+  overflow-y scroll
+  position absolute
+  right 10px
+  top 20px
+  word-break break-all
+
+  .searchopened &
+    top 110px
