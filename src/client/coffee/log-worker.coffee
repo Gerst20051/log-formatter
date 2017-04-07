@@ -48,7 +48,7 @@ mysqlTerms = [
 getRow = (input, data) ->
   body_status = input.body_status
   html = []
-  matches = data.match(/^(\w{3} {1,2}\d{1,2}) (\d{2}:\d{2}:\d{2}) (.*) (V\d+):(.*) \(log level = (\d)\)$/)
+  matches = data.match(/(\w{3} {1,2}\d{1,2}) (\d{2}:\d{2}:\d{2}) (.*) (V\d+):(.*) \(log level = (\d)\)/)
   if matches and matches.length
     date = matches[1]
     time = matches[2]
