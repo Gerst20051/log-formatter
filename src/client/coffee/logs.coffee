@@ -69,6 +69,7 @@ processRows = ->
 
 highlightSyntax = ->
   SyntaxHighlighter.defaults['gutter'] = false
+  SyntaxHighlighter.defaults['quick-code'] = false
   SyntaxHighlighter.defaults['toolbar'] = false
   SyntaxHighlighter.highlight()
 
